@@ -22,11 +22,11 @@ function Update () {
         fireTime++;
         transform.position=new Vector3(transform.position.x+0.3,transform.position.y,0);
 
-        if(fireTime>=120)
+        if(fireTime>=60)
         {
             fireFlag=false;
         }
     }
-    else if(!fireFlag)
+    if(!fireFlag)
         transform.position=gameObject.Find("Cube").transform.position;
 }

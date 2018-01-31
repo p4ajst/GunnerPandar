@@ -12,6 +12,7 @@ function Update() {
     //0=何もなし、待機
     //1=しゃがみ
     //2=移動中
+    //3=落下
     var state;
     state = 0;
 
@@ -55,8 +56,8 @@ function Update() {
         transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0);
     }
 
-    if (Input.GetKey(KeyCode.A))
-        transform.position=new Vector3(0,0,0);
+    //if (Input.GetKey(KeyCode.A))
+    //    transform.position=new Vector3(0,0,0);
 
     //待機の時（そのまま）
     if (state == 0) {
@@ -88,6 +89,17 @@ function Update() {
     //左端の設定
     if (transform.position.x <= -5)
         transform.position.x = -5;
+
+    //落ちたら
+    if(transform.position.y<=-10)
+        state=3;
+
+    //落ちたら
+    if(state==3)
+    {
+        transform.position =new Vector3(0,0,0);
+        state=0;
+    }
 }
 
 function OnCollisionEnter(col : Collision)
